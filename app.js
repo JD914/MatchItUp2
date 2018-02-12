@@ -85,17 +85,23 @@
       const d = document.getElementsByClassName("stars")[0];
       const starHTML = '<li><i class="fa fa-star"></i></li>';
       d.innerHTML = starHTML.repeat(numStars);
+	  const dd = document.getElementById("stars");
+	  dd.innerHTML = starHTML.repeat(numStars);
     }
 
     static setMoves(numMoves) {
       console.log(`class ViewChanger setMoves(${numMoves}) : changes number of moves in View`);
       const d = document.getElementsByClassName("moves")[0];
       d.innerHTML = numMoves;
+	  const dd = document.getElementById("moves");
+	  dd.innerHTML = numMoves;
     }
     static setTime(seconds) {
       console.log(`class ViewChanger setTime(${seconds}) : changes timer in View`);
       const d = document.getElementsByClassName("timer")[0];
       d.innerHTML = seconds;
+      const dd = document.getElementById("timer");
+      dd.innerHTML = seconds;	  
     }
   }
 
@@ -114,9 +120,9 @@
     // Flip the 2 tiles back over
     var tile_1 = document.getElementById(memory_tile_ids[0]);
     var tile_2 = document.getElementById(memory_tile_ids[1]);
-    tile_1.style.background = 'url("img.png") no-repeat';
+    tile_1.style.background = 'url("/assets/img.png") no-repeat';
     tile_1.innerHTML = '';
-    tile_2.style.background = 'url("img.png") no-repeat';
+    tile_2.style.background = 'url("/assets/img.png") no-repeat';
     tile_2.innerHTML = '';
     // Clear both arrays
     memory_values = [];
