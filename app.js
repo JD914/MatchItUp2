@@ -97,13 +97,14 @@
 	  dd.innerHTML = numMoves;
     }
     static setTime(seconds) {
-      console.log(`class ViewChanger setTime(${seconds}) : changes timer in View`);
+      //console.log(`class ViewChanger setTime(${seconds}) : changes timer in View`);
       const d = document.getElementsByClassName("timer")[0];
       d.innerHTML = seconds;
       const dd = document.getElementById("timer");
       dd.innerHTML = seconds;	  
     }
   }
+
 
   function newBoard() {
     ScorePanel.reset();
@@ -114,6 +115,9 @@
       output += '<div id="tile_' + i + '" onclick="memoryFlipTile(this,\'' + memory_array[i] + '\')"></div>';
     }
     document.getElementById('memory_board').innerHTML = output;
+
+    var playAgainBtn = document.getElementById('play-again');
+    playAgainBtn.onclick = playAgain;
   }
 
   function flip2Back() {
@@ -129,6 +133,10 @@
     memory_tile_ids = [];
   }
 
+  // @desciption for user to play Again
+  function playAgain() {
+    newBoard();
+  }
   window.addEventListener('load', newBoard);
   /* function to flip cards */
   window.memoryFlipTile = function (tile, val) {
