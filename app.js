@@ -99,9 +99,7 @@
     static setTime(seconds) {
       //console.log(`class ViewChanger setTime(${seconds}) : changes timer in View`);
       const d = document.getElementsByClassName("timer")[0];
-      d.innerHTML = seconds;
-      const dd = document.getElementById("timer");
-      dd.innerHTML = seconds;	  
+      d.innerHTML = seconds; 
     }
   }
 
@@ -124,9 +122,9 @@
     // Flip the 2 tiles back over
     var tile_1 = document.getElementById(memory_tile_ids[0]);
     var tile_2 = document.getElementById(memory_tile_ids[1]);
-    tile_1.style.background = 'url("/assets/img.png") no-repeat';
+    tile_1.style.background = 'url("./assets/img.png") no-repeat';
     tile_1.innerHTML = '';
-    tile_2.style.background = 'url("/assets/img.png") no-repeat';
+    tile_2.style.background = 'url("./assets/img.png") no-repeat';
     tile_2.innerHTML = '';
     // Clear both arrays
     memory_values = [];
@@ -135,6 +133,8 @@
 
   // @desciption for user to play Again
   function playAgain() {
+    var modal = document.getElementById('popup1');
+    modal.style.display = "none";
     newBoard();
   }
   window.addEventListener('load', newBoard);
@@ -160,7 +160,18 @@
 
 
             // @description congratulations when all cards match, show modal and moves, time and rating
-            function congratulations(){
+            var modal = document.getElementById('popup1');
+            modal.style.display = "block";
+            var dd = document.getElementById("timer");
+            dd.innerHTML = document.getElementsByClassName("timer")[0].innerHTML;
+
+            // When the user clicks on <span> (x), close the modal
+            var closeIcon = document.getElementById('closeIcon');
+            closeIcon.onclick = function() {
+              modal.style.display = "none";
+            }
+
+            /*function congratulations(){
                 if (matchedCard.length == 16){
                     clearInterval(interval);
                     finalTime = timer.innerHTML;
@@ -178,11 +189,11 @@
 
                     //closeicon on modal
                     closeModal();
-                };
+                }
             }
 
             // @description close icon on modal
-            function closeModal(){
+            function closeModal(){            
                 closeicon.addEventListener("click", function(e){
                     modal.classList.remove("show");
                     startGame();
@@ -193,7 +204,7 @@
             function playAgain(){
                 modal.classList.remove("show");
                 startGame();
-            }
+            }*/
           }
         } else {
           setTimeout(flip2Back, 700);
