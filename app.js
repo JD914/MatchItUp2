@@ -28,6 +28,16 @@
   var memory_values = [];
   var memory_tile_ids = [];
   var tiles_flipped = 0;
+  var myInterval;
+
+  function intervalManager(flag) {
+    if(flag)
+      myInterval = setInterval(() => {
+        ScorePanel.incrementTime();
+      }, 1000);
+    else
+      clearInterval(myInterval);
+ }
   Array.prototype.memory_tile_shuffle = function () { // jshint ignore:line
     var i = this.length, j, temp;
     while (--i > 0) {
@@ -72,12 +82,14 @@
       ViewChanger.setStars(3);
       ViewChanger.setTime(0);
       clickFirstTile = false;
+      intervalManager(true);
     }
   }
   Object.seal(ScorePanel);
+ /*
   setInterval(() => {
     ScorePanel.incrementTime();
-  }, 1000);
+  }, 1000);*/
 
 /* Functions to updates the moves, stars and time*/
   let Timer;
@@ -163,6 +175,7 @@
           // Check to see if the whole board is cleared
           if (tiles_flipped === memory_array.length) {
 
+            intervalManager(false);  // stop interval
 
             // @description congratulations when all cards match, show modal and moves, time and rating
             var modal = document.getElementById('popup1');
