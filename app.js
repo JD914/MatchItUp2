@@ -45,8 +45,10 @@
     time: 0,
     star: 3,
     incrementTime: () => {
-      ScorePanel.time += 1;
-      ViewChanger.setTime(ScorePanel.time);
+      if(clickFirstTile) {
+        ScorePanel.time += 1;
+        ViewChanger.setTime(ScorePanel.time);
+      }
     },
     incrementMove: () => {
       ScorePanel.move += 1;
@@ -69,6 +71,7 @@
       ViewChanger.setMoves(0);
       ViewChanger.setStars(3);
       ViewChanger.setTime(0);
+      clickFirstTile = false;
     }
   }
   Object.seal(ScorePanel);
@@ -139,7 +142,9 @@
   }
   window.addEventListener('load', newBoard);
   /* function to flip cards */
+  var clickFirstTile = false;
   window.memoryFlipTile = function (tile, val) {
+    clickFirstTile = true;
     if (tile.innerHTML === '' && memory_values.length < 2) {
       tile.style.background = '#FFF';
       tile.innerHTML = val;
